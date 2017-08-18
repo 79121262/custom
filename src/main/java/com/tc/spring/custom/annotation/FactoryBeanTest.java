@@ -8,7 +8,7 @@ import org.springframework.cglib.proxy.Enhancer;
 public class FactoryBeanTest<T> implements InitializingBean, FactoryBean<T> {
 
 	private String innerClassName;
-
+	
 	public void setInnerClassName(String innerClassName) {
 		this.innerClassName = innerClassName;
 	}
