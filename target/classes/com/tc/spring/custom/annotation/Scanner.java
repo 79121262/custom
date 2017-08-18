@@ -21,6 +21,7 @@ public final class Scanner extends ClassPathBeanDefinitionScanner {
 
 	public Set<BeanDefinitionHolder> doScan(String... basePackages) {
 		Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
+		
 		for (BeanDefinitionHolder holder : beanDefinitions) {
 			GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
 			definition.getPropertyValues().add("innerClassName", definition.getBeanClassName());
