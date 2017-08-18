@@ -10,4 +10,11 @@
 			<xsd:attribute name="email" type="xsd:string" />
 		</xsd:complexType>
 	</xsd:element>
+	
+	<xsd:element name="annotation-driven">
+		<xsd:complexType>
+			<xsd:attribute name="base-package" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+	
 </xsd:schema>

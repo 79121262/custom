@@ -1,36 +1,35 @@
 package com.tc.spring.custom.annotation;
 
-import org.springframework.aop.config.AopNamespaceUtils;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.xml.AbstractBeanDefinitionParser;
 import org.springframework.beans.factory.xml.BeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
-import org.springframework.cache.annotation.AnnotationCacheOperationSource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
-public class AnnotationDrivenDefinitionParser implements BeanDefinitionParser {
-
-	@Override
-	public BeanDefinition parse(Element element, ParserContext parserContext) {
-		// TODO Auto-generated method stub
-		AopAutoProxyConfigurer.configureAutoProxyCreator(element, parserContext);
-		return null;
-	}
+public class AnnotationDrivenDefinitionParser extends AbstractBeanDefinitionParser implements BeanDefinitionParser {
 
 	private static class AopAutoProxyConfigurer {
-
 		public static void configureAutoProxyCreator(Element element, ParserContext parserContext) {
-			AopNamespaceUtils.registerAutoProxyCreatorIfNecessary(parserContext, element);
-			
-			Object eleSource = parserContext.extractSource(element);
-			// Create the CacheOperationSource definition.
-			RootBeanDefinition sourceDef = new RootBeanDefinition(AnnotationCacheOperationSource.class);
-			sourceDef.setSource(eleSource);
-			sourceDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
-			String sourceName = parserContext.getReaderContext().registerWithGeneratedName(sourceDef);
-			
-			
+			//ÄÃµ½xml base-package °üÃû
+			String packagea = element.getAttribute("base-package");
+			if (StringUtils.hasText(packagea)) {
+				BeanDefinitionRegistry registry = parserContext.getReaderContext().getRegistry();
+				ResourceLoader resourceLoader = parserContext.getReaderContext().getResourceLoader();
+				com.tc.spring.custom.annotation.Scanner scanner = new com.tc.spring.custom.annotation.Scanner(registry);
+				scanner.setResourceLoader(resourceLoader);
+				scanner.scan(packagea);
+			}
+
 		}
+	}
+
+	@Override
+	protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
+		AopAutoProxyConfigurer.configureAutoProxyCreator(element, parserContext);
+		return null;
 	}
 
 }

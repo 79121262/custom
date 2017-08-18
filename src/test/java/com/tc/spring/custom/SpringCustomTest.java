@@ -1,26 +1,31 @@
 package com.tc.spring.custom;
 
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.tc.spring.custom.entity.ScanClass1;
 import com.tc.spring.custom.entity.User;
 
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:spring.xml" }, inheritLocations = true)
 public class SpringCustomTest {
 
+	@Autowired
+	private User user;
+	
+	@Autowired
+	private ScanClass1 scanClass1;
+	
 	@Test
 	public void demo() throws Exception {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
-		User user = (User) ac.getBean("user");
+		
 		System.out.println(user.getUserName());
+		scanClass1.print();
 		
-		
-//		 Class<?> handlerClass =
-//		 ClassUtils.forName("com.tc.spring.custom.handler.MyNamespaceHandler",
-//				 ClassLoader.getSystemClassLoader());
-//		 //Launcher
-//		 System.out.println(handlerClass);
 	}
 
 	@Test
