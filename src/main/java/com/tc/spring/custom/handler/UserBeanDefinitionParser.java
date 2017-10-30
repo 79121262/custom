@@ -8,7 +8,12 @@ import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 import com.tc.spring.custom.entity.User;  
-  
+ 
+/**
+ * 
+ * @author cai.tian
+ * 自定义标签
+ */
 public class UserBeanDefinitionParser extends AbstractBeanDefinitionParser implements BeanDefinitionParser {  
 	@Override
 	protected AbstractBeanDefinition parseInternal(Element rootElmt, ParserContext parserContext) {
@@ -22,7 +27,8 @@ public class UserBeanDefinitionParser extends AbstractBeanDefinitionParser imple
         }  
         if (StringUtils.hasText(email)) {  
         	bean.addPropertyValue("email", email);  
-        }  
+        }
+        //注册到spring 环境  ---内部实现DefaultListableBeanFactory registerBeanDefinition 注册一个BeanDefinition
 		parserContext.getRegistry().registerBeanDefinition("user", bean.getBeanDefinition());
 	
 		return null;

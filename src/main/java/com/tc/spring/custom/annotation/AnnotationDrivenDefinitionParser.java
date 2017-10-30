@@ -8,6 +8,11 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
+/**
+ * 
+ * @author cai.tian
+ * 自定义注解
+ */
 
 public class AnnotationDrivenDefinitionParser extends AbstractBeanDefinitionParser implements BeanDefinitionParser {
 
