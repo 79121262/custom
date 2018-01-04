@@ -5,6 +5,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.cglib.core.SpringNamingPolicy;
 import org.springframework.cglib.proxy.Enhancer;
 
+/**
+ * 
+ * @author cai.tian
+ *
+ * @param <T>
+ * 
+ * 生成动态代理的 bean 工厂
+ */
 public class FactoryBeanTest<T> implements InitializingBean, FactoryBean<T> {
 
 	private String innerClassName;

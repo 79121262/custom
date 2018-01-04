@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:tc="http://www.tc.com/schema/user"
+	xmlns:tc-test="http://www.tc.com/schema/user"
+	xmlns:tc-context="http://www.tc.com/schema/context"
 	xsi:schemaLocation="  
      http://www.springframework.org/schema/beans 
      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
      http://www.tc.com/schema/user 
-     http://www.tc.com/schema/user.xsd">
+     http://www.tc.com/schema/user.xsd
+     http://www.tc.com/schema/context 
+     http://www.tc.com/schema/context.xsd">
      
-	<tc:user id="testBean" userName="cong" email="mail.163.com" />
+	<tc-test:user id="testBean" userName="cong" email="mail.163.com" />
 	
-	<tc:annotation-driven base-package="com.tc.spring.custom"/>
+	<tc-test:annotation-driven base-package="com.tc.spring.custom"/>
+	
+	<tc-context:property-placeholder ignore-resource-not-found="true"/>
+	
 </beans>  

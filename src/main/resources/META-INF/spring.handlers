@@ -1,1 +1,2 @@
 http\://www.tc.com/schema/user=com.tc.spring.custom.MyNamespaceHandler
+http\://www.tc.com/schema/context=com.tc.spring.custom.ContextNamespaceHandler

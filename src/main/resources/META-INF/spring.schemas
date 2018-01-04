@@ -1,1 +1,2 @@
-http\://www.tc.com/schema/user.xsd=com/tc/spring/custom/xsd/spring-test.xsd
+http\://www.tc.com/schema/user.xsd=com/tc/spring/custom/xsd/tc-test.xsd
+http\://www.tc.com/schema/context.xsd=com/tc/spring/custom/xsd/tc-context.xsd
